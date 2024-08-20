@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHtml5, faCss3Alt, faJs } from '@fortawesome/free-brands-svg-icons';
 
-function Vatany({ searchQuery, selectedTopic }) {
+function Vatany({ searchQuery }) {
   const [activeEditor, setActiveEditor] = useState('html');
-  const [codeData, setCodeData] = useState([]);
-
-  useEffect(() => {
-    fetchCodeData();
-  }, []);
-
-  const fetchCodeData = async () => {
-    try {
-      const response = await axios.get('http://localhost:8085/don');
-      setCodeData(response.data);
-    } catch (error) {
-      console.error('error!', error);
-    }
-  };
+  const [codeData, setCodeData] = useState([
+    {
+      titre: 'Introduction au HTML',
+      soutitre: 'Les bases du HTML',
+      expliquer: 'Le HTML (HyperText Markup Language) est un langage de balisage qui sert à structurer et présenter le contenu sur le web. Il permet d organiser les textes, images, liens, et autres éléments dans une page web à l`aide de balises (comme <h1>, <p>, <a>, etc.). Ces balises définissent la structure et l`apparence des pages, en collaboration avec des technologies comme le CSS pour le style et le JavaScript pour l`interactivité.',
+      html: '<h1>Bienvenue au HTML</h1>',
+      css: 'h1 { color: blue; }',
+      js: 'console.log("Hello, world!");'
+    },
+    // Vous pouvez ajouter d'autres blocs de données ici
+  ]);
 
   const handleEditorChange = (editor) => {
     setActiveEditor(editor);
@@ -36,7 +32,7 @@ function Vatany({ searchQuery, selectedTopic }) {
     return code.split('\n').map((_, index) => index + 1).join('\n');
   };
 
-  const filteredData = codeData.filter(item => 
+  const filteredData = codeData.filter(item =>
     item.titre.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.soutitre.toLowerCase().includes(searchQuery.toLowerCase()) ||
     item.expliquer.toLowerCase().includes(searchQuery.toLowerCase())

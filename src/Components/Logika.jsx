@@ -28,7 +28,11 @@ function Logika({ searchQuery, setSearchQuery }) {
       </nav>
       <nav>
         <ul>
-          <li><h1>{zavtr.codeo}</h1></li>
+          <li>
+          <Link to="/codeo">
+              <h1>{zavtr.codeo}</h1>
+          </Link>
+          </li>
         </ul>
       </nav>
       <ul className="lo">
