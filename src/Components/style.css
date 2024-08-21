@@ -92,7 +92,7 @@ li{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 300px;
+    gap: 150px;
     height: 56px;
     width: 100%;
     position: fixed;
